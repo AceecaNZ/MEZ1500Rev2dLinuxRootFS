@@ -1,0 +1,40 @@
+# Ash profile 
+# vim: syntax=sh
+
+# No core files by default
+ulimit -S -c 0 > /dev/null 2>&1
+
+USER="`id -un`"
+LOGNAME=$USER
+PS1='[\u@\h \W]\# '
+PATH=$PATH
+
+HOSTNAME=`/bin/hostname`
+
+export USER LOGNAME PS1 PATH
+
+# SV - Added for qtopia2.2
+#export QTDIR=/opt/Qtopia
+#export QPEDIR=/opt/Qtopia
+#export PATH=$QTDIR/bin:$PATH
+#export LD_LIBRARY_PATH=$QTDIR/lib:/usr/local/lib:$LD_LIBRARY_PATH
+
+# SV - Added for Qt4.5.3 -> but not ready!
+#export QTDIR=/usr/local/Qt
+#export QPEDIR=/usr/local/Qt
+#export PATH=$QTDIR/bin:$PATH
+#export LD_LIBRARY_PATH=$QTDIR/lib:/usr/local/lib:$LD_LIBRARY_PATH
+
+# SV - 20140311 - Added for TS, but still has mouse cursor
+export LD_LIBRARY_PATH=/usr/local/lib
+export QTDIR=/usr/local/Trolltech/QtEmbedded-4.6.3-arm/lib             
+export QWS_MOUSE_PROTO=tslib:/dev/input/event0
+export TSLIB_CALIBFILE=/etc/pointercal        
+export TSLIB_CONFFILE=/usr/local/etc/ts.conf  
+export TSLIB_CONSOLEDEVICE=none               
+export TSLIB_FBDEVICE=/dev/fb0              
+export TSLIB_PLUGINDIR=/usr/local/lib/ts
+export TSLIB_TSDEVICE=/usr/local/lib/ts 
+export TSLIB_TSEVENTTYPE=INPUT                
+export QWS_DISPLAY=LinuxFB:mmWidth=105:mmHeight=140
+

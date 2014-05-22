@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo -e "\nTry to bring usb0 interface up..." >/dev/ttySAC2
+sleep 1
+
+modprobe g_ether
+
+if [ -f /etc/usb0-setting ] ; then
+	source /etc/usb0-setting
+	ifconfig usb0 down
+	ifconfig usb0 hw ether $MAC
+	ifconfig usb0 $IP netmask $Mask up
+	route add default gw $Gateway
+	echo nameserver $DNS > /etc/resolv.conf
+
+	echo "My IP: "$IP >/dev/ttySAC2
+#	echo "My IP: "$IP > /dev/tty1
+else
+	echo -e "Failed to bring usb0 interface up..." >/dev/ttySAC2
+fi
+
+echo -e "Done...\n" >/dev/ttySAC2
+
